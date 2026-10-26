@@ -5,12 +5,16 @@ REPO="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 SOURCE="$REPO/xfce/config/xfce4-panel.xml"
 PANEL="$HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml"
 STATUS="$HOME/.local/bin/status"
-WALLPAPER="$HOME/Downloads/wallpapers/wp13276705-kurapika-pc-wallpapers.jpg"
+WALLPAPER="$REPO/wallpapers/kurapika.jpg"
+INSTALLED_WALLPAPER="$HOME/.local/share/backgrounds/kurapika.jpg"
 STAGED="$HOME/.config/kurapika-staged/xfce4-panel.xml"
 BACKUP="$HOME/.config/kurapika-backups/$(date +%Y%m%d-%H%M%S)"
 
 [[ -f "$SOURCE" ]] || { echo "Missing panel template: $SOURCE" >&2; exit 1; }
-[[ -f "$WALLPAPER" ]] || { echo "Missing wallpaper: $WALLPAPER" >&2; exit 1; }
+[[ -f "$WALLPAPER" ]] || { echo "Missing bundled wallpaper: $WALLPAPER" >&2; exit 1; }
+mkdir -p "$(dirname "$INSTALLED_WALLPAPER")"
+install -m 644 "$WALLPAPER" "$INSTALLED_WALLPAPER"
+echo "Installed wallpaper: $INSTALLED_WALLPAPER"
 
 for f in date htb lan target; do
     [[ -f "$REPO/xfce/scripts/status/$f" ]] ||

@@ -106,6 +106,32 @@ BLOCK
     echo "Added managed Emperor Time block to $bashrc"
 fi
 
+# Ensure root login shells load .bashrc, without replacing existing login settings.
+login_profile=""
+for candidate in .bash_profile .bash_login .profile; do
+    if [[ -f "$ROOT_HOME/$candidate" ]]; then
+        login_profile="$ROOT_HOME/$candidate"
+        break
+    fi
+done
+
+if [[ -z "$login_profile" ]]; then
+    cat > "$ROOT_HOME/.bash_profile" <<'PROFILE'
+# Load Bash interactive configuration for login shells.
+if [[ -f "$HOME/.bashrc" ]]; then
+    source "$HOME/.bashrc"
+fi
+PROFILE
+    chown root:root "$ROOT_HOME/.bash_profile"
+    chmod 644 "$ROOT_HOME/.bash_profile"
+    echo "Created $ROOT_HOME/.bash_profile"
+elif grep -Eq '(^|[[:space:]])(source|\.)[[:space:]].*\.bashrc|\.bashrc' "$login_profile"; then
+    echo "Login profile already references .bashrc: $login_profile"
+else
+    echo "Existing login profile does not visibly load .bashrc: $login_profile"
+    echo "Leaving it unchanged to avoid altering existing shell behavior."
+fi
+
 chown root:root "$ROOT_HOME/.bashrc"
 chmod 644 "$ROOT_HOME/.bashrc"
 

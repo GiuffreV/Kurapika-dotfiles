@@ -1,4 +1,4 @@
-<?xml version="1.1" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <channel name="xfce4-panel" version="1.0">
   <property name="configver" type="int" value="2"/>
@@ -69,7 +69,7 @@
       <property name="length" type="double" value="100"/>
       <property name="mode" type="uint" value="0"/>
       <property name="background-style" type="uint" value="0"/>
-      <property name="background-image" type="string" value="file://${HOME}/Downloads/wallpapers/wp13276705-kurapika-pc-wallpapers.jpg"/>
+      <property name="background-image" type="string" value="file://${HOME}/.local/share/backgrounds/kurapika.jpg"/>
     </property>
   </property>
   <property name="plugins" type="empty">
