@@ -1,0 +1,16 @@
+# Kurapika: EMPEROR TIME
+export STARSHIP_CONFIG=${HOME}/.config/starship-emperor.toml
+
+if command -v starship >/dev/null 2>&1; then
+    eval "$(starship init bash)"
+fi
+
+__kurapika_theme() {
+    printf '\e]10;#FFFFFF\a'
+}
+
+PROMPT_COMMAND="__kurapika_theme${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
+
+alias fastfetch='command fastfetch --config ${HOME}/.config/fastfetch/emperor.jsonc'
+
+fastfetch

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+    "logo": {
+    "type": "kitty-icat",
+    "source": "__FASTFETCH_LOGO__",
+    "width": 14,
+    "height": 9,
+    "padding": {
+      "top": 0,
+      "left": 0,
+      "right": 3
+    }
+  },
+  "display": {
+  "color": {
+    "keys": "#FF3048",
+    "title": "#FF3048",
+    "output": "#FFFFFF"
+  }
+},
+  "modules": [
+    "title",
+    "separator",
+    "os",
+    "kernel",
+    "display",
+    "memory",
+    "disk",
+  ]
+}

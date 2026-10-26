@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+CONFIG="$HOME/.config/htb/target"
+
+TARGET_IP=""
+TARGET_NAME=""
+
+if [[ -f "$CONFIG" ]]; then
+    source "$CONFIG"
+fi
+
+if [[ -n "$TARGET_IP" && -n "$TARGET_NAME" ]]; then
+    printf '󰓾 %s  %s\n' "$TARGET_IP" "$TARGET_NAME"
+else
+    printf '󰓾  • • • • •\n'
+fi

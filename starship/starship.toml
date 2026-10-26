@@ -1,0 +1,55 @@
+
+# ╔══════════════════════════════════════════╗
+# ║          RETRO PHOSPHOR TERMINAL         ║
+# ╚══════════════════════════════════════════╝
+
+add_newline = true
+command_timeout = 1000
+
+format = """
+[┌─](bold #8492A6)$username$directory$git_branch$git_status
+[└─](bold #8492A6)$character"""
+
+# ── User ────────────────────────────────────
+[username]
+show_always = true
+style_user = "bold #8492A6"
+style_root = "bold #526A8D"
+format = "[$user](bold #8492A6) "
+
+# ── Directory ───────────────────────────────
+[directory]
+style = "bold #8492A6"
+format = "[\\[$path\\]]($style) "
+truncation_length = 3
+truncate_to_repo = true
+read_only = " [RO]"
+read_only_style = "bold #526A8D"
+
+# ── Git ────────────────────────────────────
+[git_branch]
+symbol = "git:"
+style = "bold #526A8D"
+format = "[ $symbol$branch]($style) "
+
+[git_status]
+style = "bold #526A8D"
+format = "[$all_status$ahead_behind]($style) "
+
+# ── Command prompt ─────────────────────────
+[character]
+success_symbol = "[>](bold #8492A6)"
+error_symbol = "[>](bold #FF667A)"
+vimcmd_symbol = "[<](bold #526A8D)"
+
+# ── Command duration ───────────────────────
+[cmd_duration]
+min_time = 2000
+format = "[TIME: $duration](bold #526A8D) "
+
+# ── Exit status ────────────────────────────
+[status]
+disabled = false
+format = "[EXIT $status](bold #FF667A) "
+pipestatus = true
+

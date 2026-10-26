@@ -1,0 +1,15 @@
+# Git metadata and editor files
+.git/
+*~
+*.swp
+*.swo
+.DS_Store
+
+# Private/local configuration and credentials
+*.ovpn
+*.pem
+*.key
+.env
+.env.*
+*token*
+*secret*

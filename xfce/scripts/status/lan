@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+IFACE="${LAN_INTERFACE:-$(ip -4 route show default | awk '
+    NR == 1 {
+        for (i = 1; i <= NF; i++) {
+            if ($i == "dev") {
+                print $(i + 1)
+                exit
+            }
+        }
+    }
+')}"
+
+IP=""
+
+if [[ -n "$IFACE" ]]; then
+    IP=$(ip -4 -o addr show dev "$IFACE" |
+        awk '{split($4, a, "/"); print a[1]; exit}')
+fi
+
+printf '󰈀  %s\n' "${IP:-• • • • •}"
