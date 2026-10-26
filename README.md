@@ -27,29 +27,38 @@ separate Emperor Time theme uses crimson accents.
 Install the required applications separately using your preferred package
 manager.
 
-## Install user terminal configs
+## Install
 
-Clone the repository, enter its directory, and run:
+Run the interactive installer from the repository directory:
 
 ```bash
 ./install.sh
 ```
 
-Review the files before installation. Existing configuration files should
-be backed up before they are replaced.
+Choose the user theme, root Emperor Time theme, or both. The root option
+uses sudo. Do not run the main installer itself with sudo.
 
-The installer does not install the root Emperor Time configuration or
-automatically replace your Bash configuration.
+The installer backs up existing configuration files before replacing them.
+It installs the root Starship and Fastfetch configs automatically and
+uses `/root/.config/fastfetch/kurapika.png` when available. If no logo
+exists there, it asks for an absolute path.
+
+If root's `.bashrc` already contains Emperor Time setup, the installer
+does not append a duplicate initialization block. Review that existing
+setup if necessary.
+
+The installer does not automatically change the XFCE panel; use
+`xfce/restore-panel.sh` separately and follow its instructions.
 
 ## Root Emperor Time theme
 
-`bash/root-bashrc`, `starship/starship-emperor.toml`, and
-`fastfetch/emperor.jsonc` are separate root-theme configuration files.
-Review and merge them into the appropriate root configuration manually.
-Do not run the user installer with `sudo`.
+The root setup uses `starship/starship-emperor.toml`,
+`fastfetch/emperor.jsonc`, and `bash/root-bashrc` as its reference
+configuration. `install-root.sh` installs the active Starship and
+Fastfetch configs and adds a managed Bash block when needed.
 
-The root Fastfetch configuration uses a `__FASTFETCH_LOGO__` placeholder.
-Set it to the path of your own logo before using that configuration.
+The existing root Bash configuration is backed up before the managed
+block is added. Existing unrelated settings are preserved.
 
 ## XFCE panel restoration
 
